@@ -1,0 +1,24 @@
+{
+  "name": "food-supply-chain-dapp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy-local.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy-sepolia.js --network sepolia",
+    "serve:frontend": "sh -c 'cd frontend && python3 -m http.server 5180'"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "chai": "^4.3.7",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.11.1",
+    "hardhat": "^2.22.10",
+    "hardhat-gas-reporter": "^2.3.0"
+  }
+}

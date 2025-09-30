@@ -1,0 +1,56 @@
+body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji; }
+
+:root {
+  --glass: rgba(255,255,255,0.08);
+  --ring: rgba(255,255,255,0.12);
+  --text: #E5E7EB;
+  --muted: rgba(255,255,255,0.6);
+}
+
+html.dark {
+  --glass: rgba(0,0,0,0.25);
+  --ring: rgba(0,0,0,0.35);
+  --text: #0F172A;
+  --muted: rgba(0,0,0,0.7);
+}
+
+.bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ring);
+}
+
+.card { padding: 1rem; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+.card-title { font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+
+.field-label { font-size: 0.8rem; opacity: 0.8; margin-bottom: 0.25rem; display: block; }
+.field-input { width: 100%; padding: 0.6rem 0.75rem; border-radius: 0.65rem; border: 1px solid var(--ring); background: rgba(0,0,0,0.25); color: #fff; }
+
+.btn-primary { background: linear-gradient(135deg,#6366F1,#8B5CF6); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); box-shadow: 0 10px 20px rgba(99,102,241,0.35); }
+.btn-success { background: linear-gradient(135deg,#10B981,#34D399); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
+.btn-info { background: linear-gradient(135deg,#3B82F6,#60A5FA); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
+.btn-warning { background: linear-gradient(135deg,#A855F7,#EC4899); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
+.btn-muted { background: rgba(255,255,255,0.1); color: #fff; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
+
+.code-block { font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; padding: 0.75rem; border-radius: 0.75rem; background: rgba(0,0,0,0.35); border: 1px solid var(--ring); }
+
+/* Subtle hover/transition */
+button { transition: transform .15s ease, filter .15s ease; }
+button:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+/* Three.js canvas ensures no pointer lock */
+#bg3d { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: block; }
+
+.icon { width: 26px; height: 26px; opacity: 0.9; }
+.icon-sm { width: 20px; height: 20px; opacity: 0.95; }
+
+.card-title i { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35)); }
+
+.btn-primary i, .btn-success i, .btn-info i, .btn-warning i, .btn-muted i { transition: transform .15s ease; }
+.btn-primary:hover i, .btn-success:hover i, .btn-info:hover i, .btn-warning:hover i, .btn-muted:hover i { transform: translateY(-1px) scale(1.03); }

@@ -1,0 +1,27 @@
+# Node
+node_modules/
+.npm/
+*.log
+logs/
+
+# OS
+.DS_Store
+
+# Hardhat/Artifacts
+artifacts/
+cache/
+coverage/
+coverage.json
+
+# Env
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Misc
+*.swp
+*~
