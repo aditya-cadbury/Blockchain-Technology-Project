@@ -75,19 +75,6 @@ This document maps the implementation to the evaluation criteria and provides ev
 
 ---
 
-## Summary Table
-
-| Criterion | Score (1–5) | Key Evidence |
-|---|---:|---|
-| Uniqueness & Creativity | 5 | Role-based lifecycle, QR tracking |
-| Smart Contract Quality & Security | 5 | Strict state machine, role checks, events, tests |
-| Functional Correctness & Scalability | 5 | Tests, optimizer, fee floors, events |
-| UX/UI & Documentation | 5 | Tailwind + 3D, dark mode, icons, docs |
-| Real-World Adoption Potential | 5 | QR flow, reliability improvements |
-
-
----
-
 ## How to Demo Quickly
 1. Local node + deploy
    - `npx hardhat node`
