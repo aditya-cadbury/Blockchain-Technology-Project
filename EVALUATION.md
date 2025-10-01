@@ -13,7 +13,7 @@ This document maps the implementation to the evaluation criteria and provides ev
   - QR generation in UI: `frontend/app.js` (`generateQR()`)
   - Consumer-friendly tracking view: `frontend/index.html` → Track section
 
-## 2) Smart Contract Quality, Security, Technical Robustness (Score: 5/5)
+## 2) Smart Contract Quality, Security, Technical Robustness
 - Secure design:
   - Strict state machine using `enum ProductState` and `require()` guards for every transition.
   - Minimal surface area: creation, shipping, receiving, with explicit role checks.
