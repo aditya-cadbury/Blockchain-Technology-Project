@@ -2,7 +2,7 @@
 
 This document maps the implementation to the evaluation criteria and provides evidence (files, features, tests) that demonstrate how the app meets each requirement. All paths are relative to the project root.
 
-## 1) Uniqueness & Creativity (Score: 5/5)
+## 1) Uniqueness & Creativity 
 - Concept: Consumer-trust focused provenance for perishable food (e.g., mangoes) with a scannable QR and transparent lifecycle.
 - Differentiation:
   - Role-based lifecycle (Farmer → Shipper → Receiver) with immutable on-chain events, readable by anyone.
@@ -28,7 +28,7 @@ This document maps the implementation to the evaluation criteria and provides ev
   - Events: `ProductCreated`, `ProductShipped`, `ProductReceived`
   - Tests verify revert cases, state correctness: `test/SupplyChain.t.js`
 
-## 3) Functional Correctness, Performance, Scalability (Score: 5/5)
+## 3) Functional Correctness, Performance, Scalability 
 - Correctness:
   - Unit tests cover success and failure paths: creation, shipping, receiving, and invalid access/state.
   - ABI is written post-deploy; frontend reads current address (`frontend/abi.json`).
@@ -46,7 +46,7 @@ This document maps the implementation to the evaluation criteria and provides ev
   - Fee floor implementation: `frontend/app.js` → `feeOverrides()` applied in write calls
   - Deployment scripts: `scripts/deploy-local.js`, `scripts/deploy-sepolia.js`
 
-## 4) User Experience (UX/UI), Documentation, Clarity (Score: 5/5)
+## 4) User Experience (UX/UI), Documentation, Clarity 
 - Modern UI:
   - Tailwind-based, responsive layout with glassmorphism cards and soft shadows.
   - Three.js animated background and Lucide icons for modern look and visual hierarchy.
@@ -60,7 +60,7 @@ This document maps the implementation to the evaluation criteria and provides ev
   - `ARCHITECTURE.md` explains fee overrides and data flow.
   - This `EVALUATION.md` mapping to rubric.
 
-## 5) Real-World Use Case, Adoption Potential (Score: 5/5)
+## 5) Real-World Use Case, Adoption Potential
 - Use Case:
   - Addresses real transparency needs in food supply chains; combats counterfeit claims; builds consumer trust.
 - Adoption:
@@ -85,7 +85,6 @@ This document maps the implementation to the evaluation criteria and provides ev
 | UX/UI & Documentation | 5 | Tailwind + 3D, dark mode, icons, docs |
 | Real-World Adoption Potential | 5 | QR flow, reliability improvements |
 
-Total: 25 / 25
 
 ---
 
