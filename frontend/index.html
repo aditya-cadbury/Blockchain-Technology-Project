@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Supply Chain DApp</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="h-full bg-gradient-to-br from-slate-900 via-indigo-900 to-black text-slate-100">
+  <canvas id="bg3d" class="fixed inset-0 -z-10"></canvas>
+  <div class="fixed inset-0 -z-10 bg-grid"></div>
+
+  <div class="max-w-6xl mx-auto p-6 min-h-full flex flex-col">
+    <header class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-indigo-500/80 shadow-lg shadow-indigo-500/30 backdrop-blur"></div>
+        <h1 class="text-2xl font-bold tracking-tight flex items-center gap-2">
+          <i data-lucide="truck" class="icon"></i>
+          Food Supply Chain DApp
+        </h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="themeBtn" class="px-3 py-2 rounded-lg glass hover:scale-[1.02] transition flex items-center gap-2">
+          <i id="themeIcon" data-lucide="sun" class="icon-sm"></i>
+          <span>Theme</span>
+        </button>
+        <button id="connectBtn" class="px-4 py-2 rounded-lg btn-primary flex items-center gap-2">
+          <i data-lucide="wallet" class="icon-sm"></i>
+          <span>Connect Wallet</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="grid lg:grid-cols-3 gap-6 mb-10">
+      <div class="glass card">
+        <h2 class="card-title flex items-center gap-2"><i data-lucide="sprout" class="icon-sm"></i> Create Product (Farmer)</h2>
+        <label class="field-label">Product ID</label>
+        <input id="cpId" class="field-input" placeholder="e.g., 1001" />
+        <label class="field-label">Name</label>
+        <input id="cpName" class="field-input" placeholder="Mango" />
+        <label class="field-label">Origin Farm</label>
+        <input id="cpOrigin" class="field-input" placeholder="Alphonso Farm" />
+        <button id="createBtn" class="btn-success mt-2 w-full flex items-center justify-center gap-2">
+          <i data-lucide="plus-circle" class="icon-sm"></i>
+          <span>Create</span>
+        </button>
+      </div>
+
+      <div class="glass card">
+        <h2 class="card-title flex items-center gap-2"><i data-lucide="ship" class="icon-sm"></i> Ship Product (Shipper)</h2>
+        <label class="field-label">Product ID</label>
+        <input id="spId" class="field-input" placeholder="1001" />
+        <button id="shipBtn" class="btn-info mt-2 w-full flex items-center justify-center gap-2">
+          <i data-lucide="send" class="icon-sm"></i>
+          <span>Ship</span>
+        </button>
+      </div>
+
+      <div class="glass card">
+        <h2 class="card-title flex items-center gap-2"><i data-lucide="package-check" class="icon-sm"></i> Receive Product (Receiver)</h2>
+        <label class="field-label">Product ID</label>
+        <input id="rpId" class="field-input" placeholder="1001" />
+        <button id="receiveBtn" class="btn-warning mt-2 w-full flex items-center justify-center gap-2">
+          <i data-lucide="download" class="icon-sm"></i>
+          <span>Receive</span>
+        </button>
+      </div>
+
+      <div class="glass card">
+        <h2 class="card-title flex items-center gap-2"><i data-lucide="file-plus" class="icon-sm"></i> Metadata (IPFS/Web3.Storage)</h2>
+        <p class="text-xs text-slate-300/80 mb-2">Option A: Upload a file with a Web3.Storage token. Option B: Paste an existing CID and set it on-chain.</p>
+        <label class="field-label">Product ID</label>
+        <input id="mdId" class="field-input" placeholder="1001" />
+        <label class="field-label">Web3.Storage API Token (optional)</label>
+        <input id="w3sToken" class="field-input" placeholder="eyJhbGciOi..." />
+        <label class="field-label">Select File (image/json)</label>
+        <input id="mdFile" type="file" class="field-input" />
+        <div class="flex gap-2 mt-2">
+          <button id="uploadBtn" class="btn-info flex-1 flex items-center justify-center gap-2">
+            <i data-lucide="upload" class="icon-sm"></i>
+            <span>Upload to Web3.Storage</span>
+          </button>
+        </div>
+        <label class="field-label mt-3">Or paste CID</label>
+        <input id="mdCid" class="field-input" placeholder="bafy..." />
+        <button id="setCidBtn" class="btn-primary mt-2 w-full flex items-center justify-center gap-2">
+          <i data-lucide="save" class="icon-sm"></i>
+          <span>Set Metadata CID</span>
+        </button>
+      </div>
+    </main>
+
+    <section class="glass card mb-8">
+      <h2 class="card-title flex items-center gap-2">
+        <i data-lucide="search" class="icon-sm"></i>
+        Track Product
+      </h2>
+      <div class="flex flex-col md:flex-row gap-3 mb-4">
+        <input id="tpId" class="field-input flex-1" placeholder="Enter Product ID" />
+        <div class="flex gap-2">
+          <button id="trackBtn" class="btn-primary flex items-center gap-2">
+            <i data-lucide="radar" class="icon-sm"></i>
+            <span>Track</span>
+          </button>
+          <button id="qrBtn" class="btn-muted flex items-center gap-2">
+            <i data-lucide="qr-code" class="icon-sm"></i>
+            <span>Generate QR</span>
+          </button>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4">
+        <pre id="trackResult" class="code-block"></pre>
+        <div class="flex items-center justify-center min-h-[180px]">
+          <div id="qr" class="p-4 rounded-xl bg-black/20 ring-1 ring-white/10"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-auto text-xs text-slate-300/80 flex items-center gap-2">
+      <i data-lucide="info" class="icon-sm"></i>
+      Sepolia/Local supported. Use owner account or grant roles.
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
