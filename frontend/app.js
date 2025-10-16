@@ -279,16 +279,26 @@ async function generateQR() {
     const id = input.value.trim();
     if (!id) { alert('Enter Product ID first'); return; }
 
-    await ensureQRCode();
+    let qrReady = false;
+    try { await ensureQRCode(); qrReady = true; } catch {}
 
     const url = `${location.origin}${location.pathname}?productId=${encodeURIComponent(id)}`;
     const qrDiv = document.getElementById('qr');
     if (!qrDiv) { alert('QR container not found'); return; }
     qrDiv.innerHTML = '';
-    window.QRCode.toCanvas(url, { width: 180 }, function (err, canvas) {
-      if (err) return alert('QR error');
-      qrDiv.appendChild(canvas);
-    });
+    if (qrReady && window.QRCode && typeof window.QRCode.toCanvas === 'function') {
+      window.QRCode.toCanvas(url, { width: 180 }, function (err, canvas) {
+        if (err) return alert('QR error');
+        qrDiv.appendChild(canvas);
+      });
+    } else {
+      // Network to CDN blocked – fallback to hosted QR image API
+      const img = new Image();
+      img.width = 180; img.height = 180; img.alt = 'QR';
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(url);
+      img.onerror = () => alert('QR fallback failed to load');
+      qrDiv.appendChild(img);
+    }
   } catch (e) {
     alert(parseError(e));
   }
