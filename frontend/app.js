@@ -272,16 +272,30 @@ async function trackProduct() {
   } catch (e) { alert(parseError(e)); }
 }
 
-function generateQR() {
-  const id = document.getElementById('tpId').value.trim();
-  if (!id) { alert('Enter Product ID first'); return; }
-  const url = `${location.origin}${location.pathname}?productId=${encodeURIComponent(id)}`;
-  const qrDiv = document.getElementById('qr');
-  qrDiv.innerHTML = '';
-  QRCode.toCanvas(url, { width: 180 }, function (err, canvas) {
-    if (err) return alert('QR error');
-    qrDiv.appendChild(canvas);
-  });
+async function generateQR() {
+  try {
+    const input = document.getElementById('tpId');
+    if (!input) { alert('Track input not found'); return; }
+    const id = input.value.trim();
+    if (!id) { alert('Enter Product ID first'); return; }
+
+    // Ensure QRCode library is available
+    if (!window.QRCode) {
+      await loadScript('https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js');
+      if (!window.QRCode) throw new Error('QR library failed to load');
+    }
+
+    const url = `${location.origin}${location.pathname}?productId=${encodeURIComponent(id)}`;
+    const qrDiv = document.getElementById('qr');
+    if (!qrDiv) { alert('QR container not found'); return; }
+    qrDiv.innerHTML = '';
+    window.QRCode.toCanvas(url, { width: 180 }, function (err, canvas) {
+      if (err) return alert('QR error');
+      qrDiv.appendChild(canvas);
+    });
+  } catch (e) {
+    alert(parseError(e));
+  }
 }
 
 function parseError(e) {
