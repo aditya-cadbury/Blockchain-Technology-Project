@@ -125,6 +125,7 @@ grep -A 3 "require.*Not in.*state" contracts/SupplyChain.sol
 - **Gas Fee Management**: EIP-1559 fee floors to prevent underpriced transactions
 - **Dynamic Loading**: CDN-based Ethers.js loading with fallbacks
 - **Provider Events**: Account and chain change handling
+- **Account Switching UX**: UI label updates on `accountsChanged`; import local keys using `HARDHAT_PREFUNDED_KEYS.md`
 
 **Key Implementation Details:**
 ```javascript
@@ -164,13 +165,14 @@ npm run serve:frontend # Terminal 3
 
 **Implementation Status: COMPLETE**
 
-**IPFS Integration:**
+**IPFS/Web3.Storage Integration:**
 - **Web3.Storage Integration**: Direct API integration for file uploads
 - **Metadata CID Storage**: On-chain storage of IPFS content identifiers
 - **Dual Upload Methods**: 
   - Option A: Upload file with Web3.Storage token
   - Option B: Paste existing CID directly
 - **Authorization Control**: Only farmer or contract owner can set metadata
+ - **UI/UX Updates**: Responsive metadata card with two‑column alignment and wrapped buttons
 
 **Oracle Pattern:**
 - **Event-Driven Architecture**: Events can trigger external data fetching
@@ -187,7 +189,7 @@ grep -A 2 "event ProductMetadataUpdated" contracts/SupplyChain.sol
 # Test IPFS functionality
 # 1. Get Web3.Storage token from https://web3.storage
 # 2. Upload a file using the UI
-# 3. Verify CID is stored on-chain
+# 3. Verify CID is stored on-chain and visible in Track view
 ```
 
 **Evidence Files:**

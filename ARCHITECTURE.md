@@ -81,6 +81,7 @@ Files: `frontend/index.html`, `frontend/styles.css`, `frontend/app.js`
 - Contract wiring from `frontend/abi.json`
 - Write and read functions with fee overrides
 - QR generation and provider events
+- Account switching: listens to `accountsChanged` and updates the Connect button label; use MetaMask account switch or import keys from `HARDHAT_PREFUNDED_KEYS.md`
 
 ### Metadata Flow (IPFS/Web3.Storage)
 - Contract field: `Product.metadataCid` with setter `setProductMetadataCid(productId, cid)`.
@@ -89,6 +90,19 @@ Files: `frontend/index.html`, `frontend/styles.css`, `frontend/app.js`
   - Upload any file to Web3.Storage using API token → get CID → call setter.
   - Paste an existing CID → call setter directly.
 - UI: `frontend/index.html` → Metadata card with upload and set buttons; logic in `frontend/app.js`.
+
+### UI Layout Updates (2025-10)
+- Main content uses a single-column stack for readability.
+- Metadata card spans wider on large screens and aligns fields in a responsive grid.
+- Long button labels wrap inside rounded buttons; cards clip overflow for clean layout.
+
+### Dev Accounts & Scripts
+- Prefunded local accounts: see `HARDHAT_PREFUNDED_KEYS.md` (20 deterministic keys derived from Hardhat mnemonic) and utility `scripts/derive-hardhat-accounts.js`.
+- Role bootstrap: `npm run setup:roles` grants farmer/shipper/receiver to all local accounts after deploy.
+
+### Serving & Ports
+- Local UI runs on port 5180 via `npm run serve:frontend`.
+- If a port conflict occurs, kill the process using `lsof -iTCP:5180 -sTCP:LISTEN -n -P | awk 'NR>1 {print $2}' | xargs -r kill -9` and re-run the server.
 
 ## Troubleshooting
 - “Underpriced” or stuck tx → increase `MIN_FEE_GWEI` in `app.js` and reload.

@@ -2,7 +2,7 @@
 
 This guide shows you exactly how to manually verify if the following components are implemented:
 
-1. **IPFS/Filecoin/Oracle Integration**
+1. **IPFS/Web3.Storage/Oracle Integration**
 2. **ZK or NFT Logic** 
 3. **Testing (Unit + E2E) + Demo Prep**
 4. **Documentation + Deployment**
@@ -129,7 +129,7 @@ async function setMetadataCid() {
 }
 ```
 
-### Step 6: Check Frontend UI for IPFS Elements
+### Step 6: Check Frontend UI for IPFS Elements (updated layout)
 
 ```bash
 # Look for metadata card in HTML
@@ -196,6 +196,23 @@ npm run serve:frontend # Terminal 3
 - CID is returned and displayed
 - Transaction succeeds when setting metadata CID
 - Product tracking shows the metadata CID
+
+---
+
+## 5. Dev Accounts & Roles Verification
+
+### Step 1: View Prefunded Keys
+```bash
+cat HARDHAT_PREFUNDED_KEYS.md | head -10
+```
+
+### Step 2: Grant Roles (if needed)
+```bash
+npm run setup:roles
+```
+
+### Step 3: Switch Accounts in MetaMask
+- Import any private key from `HARDHAT_PREFUNDED_KEYS.md` and switch accounts; the UI updates the Connect button label.
 
 ---
 

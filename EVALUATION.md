@@ -7,7 +7,7 @@ This document maps the implementation to the evaluation criteria and provides ev
 - Differentiation:
   - Role-based lifecycle (Farmer → Shipper → Receiver) with immutable on-chain events, readable by anyone.
   - QR-driven “track by ID” flow enabling offline-to-online conversion at point-of-sale.
-  - Optional IPFS for future metadata (images, certifications).
+- Optional IPFS/Web3.Storage metadata (images, certifications) now implemented.
 - Evidence:
   - Smart contract lifecycle and events: `contracts/SupplyChain.sol`
   - QR generation in UI: `frontend/app.js` (`generateQR()`)
@@ -60,7 +60,7 @@ This document maps the implementation to the evaluation criteria and provides ev
   - `ARCHITECTURE.md` explains fee overrides and data flow.
   - This `EVALUATION.md` mapping to rubric.
 
-## 6) IPFS/Filecoin/Oracle integration
+## 6) IPFS/Web3.Storage integration
 - IPFS/Web3.Storage integration implemented for product metadata.
   - Contract: `metadataCid` field, `setProductMetadataCid`, and `ProductMetadataUpdated` event.
   - Frontend: upload with Web3.Storage API token or paste CID; setter call wired.

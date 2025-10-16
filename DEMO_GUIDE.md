@@ -111,18 +111,20 @@ This guide maps each project phase to concrete steps and evidence in this reposi
    - Open `http://127.0.0.1:5180`
    - Connect MetaMask (show automatic network switch)
    - Create → Ship → Receive → Track
+   - Upload metadata to Web3.Storage → Set CID → Track again (shows CID)
 
 ---
 
-## Phase 5: IPFS/Filecoin/Oracle Integration 🔄
+## Phase 5: IPFS/Web3.Storage Integration 🔄
 
 ### What to Show
 - **IPFS Ready**: Architecture prepared for metadata storage
 - **Oracle Pattern**: Events can trigger external data fetching
 
 ### Evidence Files
-- `README.md` – IPFS mentioned as optional
-- `contracts/SupplyChain.sol` – Events emitted for off-chain processing
+- `README.md` – IPFS/Web3.Storage documented with steps
+- `contracts/SupplyChain.sol` – Metadata CID storage and events
+- `frontend/app.js` – `uploadToWeb3Storage` and `setMetadataCid`
 
 ### Demo Steps
 1. Show IPFS mention:
@@ -138,7 +140,7 @@ This guide maps each project phase to concrete steps and evidence in this reposi
 
 ---
 
-## Phase 6: ZK or NFT Logic (Not Applicable) ❌
+## Phase 6: ZK or NFT Logic (Optional) ❌
 - Decision: Transparency prioritized; ZK optional. NFT mint at `ProductReceived` is a possible extension.
 
 ---
