@@ -279,11 +279,7 @@ async function generateQR() {
     const id = input.value.trim();
     if (!id) { alert('Enter Product ID first'); return; }
 
-    // Ensure QRCode library is available
-    if (!window.QRCode) {
-      await loadScript('https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js');
-      if (!window.QRCode) throw new Error('QR library failed to load');
-    }
+    await ensureQRCode();
 
     const url = `${location.origin}${location.pathname}?productId=${encodeURIComponent(id)}`;
     const qrDiv = document.getElementById('qr');
@@ -296,6 +292,25 @@ async function generateQR() {
   } catch (e) {
     alert(parseError(e));
   }
+}
+
+// ---------- QRCode dynamic loader ----------
+async function ensureQRCode() {
+  if (window.QRCode && typeof window.QRCode.toCanvas === 'function') return;
+  const sources = [
+    'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js',
+    'https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js',
+    'https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js',
+    'https://unpkg.com/qrcode@1.5.4/build/qrcode.min.js'
+  ];
+  let lastErr;
+  for (const src of sources) {
+    try {
+      await loadScript(src);
+      if (window.QRCode && typeof window.QRCode.toCanvas === 'function') return;
+    } catch (e) { lastErr = e; }
+  }
+  throw lastErr || new Error('Failed to load QR library from all sources');
 }
 
 function parseError(e) {
