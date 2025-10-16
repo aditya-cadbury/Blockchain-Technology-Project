@@ -47,6 +47,31 @@
           "type": "uint256"
         },
         {
+          "indexed": false,
+          "internalType": "string",
+          "name": "metadataCid",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "updater",
+          "type": "address"
+        }
+      ],
+      "name": "ProductMetadataUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
           "indexed": true,
           "internalType": "address",
           "name": "receiver",
@@ -159,6 +184,11 @@
         {
           "internalType": "string",
           "name": "originFarm",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "metadataCid",
           "type": "string"
         },
         {
@@ -289,6 +319,24 @@
         }
       ],
       "name": "setFarmer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "cid",
+          "type": "string"
+        }
+      ],
+      "name": "setProductMetadataCid",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

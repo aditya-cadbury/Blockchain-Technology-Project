@@ -26,17 +26,32 @@ html.dark {
   border: 1px solid var(--ring);
 }
 
-.card { padding: 1rem; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+.card { padding: 1rem; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); overflow: hidden; }
 .card-title { font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
 
 .field-label { font-size: 0.8rem; opacity: 0.8; margin-bottom: 0.25rem; display: block; }
 .field-input { width: 100%; padding: 0.6rem 0.75rem; border-radius: 0.65rem; border: 1px solid var(--ring); background: rgba(0,0,0,0.25); color: #fff; }
 
-.btn-primary { background: linear-gradient(135deg,#6366F1,#8B5CF6); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); box-shadow: 0 10px 20px rgba(99,102,241,0.35); }
-.btn-success { background: linear-gradient(135deg,#10B981,#34D399); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
-.btn-info { background: linear-gradient(135deg,#3B82F6,#60A5FA); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
-.btn-warning { background: linear-gradient(135deg,#A855F7,#EC4899); color: white; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
-.btn-muted { background: rgba(255,255,255,0.1); color: #fff; padding: 0.6rem 0.9rem; border-radius: 0.65rem; border: 1px solid var(--ring); }
+.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-muted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  white-space: normal;           /* allow wrapping */
+  overflow-wrap: anywhere;       /* wrap long words safely */
+  word-break: normal;
+  max-width: 100%;
+  padding: 0.8rem 1rem;          /* slightly larger for multi-line */
+  border-radius: 0.65rem;
+  border: 1px solid var(--ring);
+}
+
+.btn-primary { background: linear-gradient(135deg,#6366F1,#8B5CF6); color: white; box-shadow: 0 10px 20px rgba(99,102,241,0.35); }
+.btn-success { background: linear-gradient(135deg,#10B981,#34D399); color: white; }
+.btn-info { background: linear-gradient(135deg,#3B82F6,#60A5FA); color: white; }
+.btn-warning { background: linear-gradient(135deg,#A855F7,#EC4899); color: white; }
+.btn-muted { background: rgba(255,255,255,0.1); color: #fff; }
 
 .code-block { font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; padding: 0.75rem; border-radius: 0.75rem; background: rgba(0,0,0,0.35); border: 1px solid var(--ring); }
 
